@@ -744,7 +744,7 @@ function drawConnectionsFiltered(allProjects, visibleProjects) {
 // CONTACT FORM
 // ============================================
 // N8N Webhook URL - Replace with your actual webhook URL
-const N8N_WEBHOOK_URL = 'https://YOUR-N8N-INSTANCE.app.n8n.cloud/webhook/portfolio-contact';
+const N8N_WEBHOOK_URL = 'https://n8n.n8n-teina.shop/webhook/portfolio-contact';
 
 function setupContactForm() {
   elements.contactForm?.addEventListener('submit', async (e) => {
