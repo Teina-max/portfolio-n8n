@@ -747,16 +747,24 @@ function drawConnectionsFiltered(allProjects, visibleProjects) {
 const N8N_WEBHOOK_URL = 'https://n8n.n8n-teina.shop/webhook/portfolio-contact';
 
 function setupContactForm() {
-  elements.contactForm?.addEventListener('submit', async (e) => {
+  // Re-query the form element to ensure it's available (fixes mobile timing issues)
+  const contactForm = document.getElementById('contactForm');
+
+  if (!contactForm) {
+    console.warn('Contact form not found');
+    return;
+  }
+
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const email = elements.contactForm.querySelector('#email-from');
-    const subject = elements.contactForm.querySelector('#email-subject');
-    const message = elements.contactForm.querySelector('#email-body');
-    const submitBtn = elements.contactForm.querySelector('.btn-execute');
+    const email = contactForm.querySelector('#email-from');
+    const subject = contactForm.querySelector('#email-subject');
+    const message = contactForm.querySelector('#email-body');
+    const submitBtn = contactForm.querySelector('.btn-execute');
     let isValid = true;
 
-    elements.contactForm.querySelectorAll('.form-field').forEach((field) => {
+    contactForm.querySelectorAll('.form-field').forEach((field) => {
       field.classList.remove('error');
     });
 
@@ -800,13 +808,13 @@ function setupContactForm() {
 
         if (response.ok) {
           // Success
-          elements.contactForm.hidden = true;
-          elements.contactForm.nextElementSibling.hidden = false;
+          contactForm.hidden = true;
+          contactForm.nextElementSibling.hidden = false;
 
           setTimeout(() => {
-            elements.contactForm.reset();
-            elements.contactForm.hidden = false;
-            elements.contactForm.nextElementSibling.hidden = true;
+            contactForm.reset();
+            contactForm.hidden = false;
+            contactForm.nextElementSibling.hidden = true;
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<span class="btn-icon">▶</span><span data-i18n="contact.submit">Execute Workflow</span>';
           }, 3000);
@@ -817,13 +825,13 @@ function setupContactForm() {
         console.error('Error sending message:', error);
         // Show error state but still show success for UX (webhook might be down)
         // In production, you might want to show an error message
-        elements.contactForm.hidden = true;
-        elements.contactForm.nextElementSibling.hidden = false;
+        contactForm.hidden = true;
+        contactForm.nextElementSibling.hidden = false;
 
         setTimeout(() => {
-          elements.contactForm.reset();
-          elements.contactForm.hidden = false;
-          elements.contactForm.nextElementSibling.hidden = true;
+          contactForm.reset();
+          contactForm.hidden = false;
+          contactForm.nextElementSibling.hidden = true;
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<span class="btn-icon">▶</span><span data-i18n="contact.submit">Execute Workflow</span>';
         }, 3000);
