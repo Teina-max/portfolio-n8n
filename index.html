@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark" data-lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>Teina Teinauri | Builder Automatisation n8n & Supabase</title>
+  <meta name="description" content="Portfolio de Teina Teinauri - Builder en automatisation n8n et architecture Supabase. +40 workflows, +20 Edge Functions. Autodidacte passionné, Toulouse.">
+  <meta name="keywords" content="n8n, automatisation, Supabase, Edge Functions, workflows, IA, PostgreSQL, Deno, TypeScript, Toulouse, freelance">
+  <meta name="author" content="Teina Teinauri">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Teina Teinauri | Builder Automatisation n8n">
+  <meta property="og:description" content="Builder en automatisation n8n et architecture Supabase. +40 workflows, +20 Edge Functions.">
+  <meta property="og:image" content="https://res.cloudinary.com/dttleawx6/image/upload/v1769290753/Generated_Image_November_11_2025_-_3_48PM_untrzs.png">
+  <meta property="og:type" content="website">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Teina Teinauri",
+    "jobTitle": "Builder Automatisation n8n & Supabase",
+    "url": "https://teina-portfolio.com",
+    "sameAs": ["https://linkedin.com/in/teina-automatise", "https://github.com/Teina-max"]
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://res.cloudinary.com">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ==========================================
+       HEADER - Toggles Lang/Theme
+       ========================================== -->
+  <header class="site-header">
+    <div class="header-brand">
+      <span class="brand-icon">⚡</span>
+      <span class="brand-name">Teina</span>
+    </div>
+
+    <div class="header-controls">
+      <!-- Language Toggle -->
+      <button class="toggle-btn toggle-lang" id="langToggle" aria-label="Changer de langue">
+        <span class="toggle-option" data-lang="fr">FR</span>
+        <span class="toggle-separator">/</span>
+        <span class="toggle-option" data-lang="en">EN</span>
+      </button>
+
+      <!-- Theme Toggle -->
+      <button class="toggle-btn toggle-theme" id="themeToggle" aria-label="Changer de thème">
+        <span class="theme-icon theme-icon--dark">🌙</span>
+        <span class="theme-icon theme-icon--light">☀️</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       PROGRESS NAV (Mini workflow sidebar)
+       ========================================== -->
+  <nav class="workflow-progress" aria-label="Navigation sections">
+    <a href="#hero" class="progress-node active" data-section="hero" aria-label="Accueil">
+      <span class="node-dot"></span>
+      <span class="node-label" data-i18n="nav.trigger">Trigger</span>
+    </a>
+    <div class="progress-line"></div>
+    <a href="#about" class="progress-node" data-section="about" aria-label="À propos">
+      <span class="node-dot"></span>
+      <span class="node-label" data-i18n="nav.about">About</span>
+    </a>
+    <div class="progress-line"></div>
+    <a href="#skills" class="progress-node" data-section="skills" aria-label="Compétences">
+      <span class="node-dot"></span>
+      <span class="node-label" data-i18n="nav.skills">Skills</span>
+    </a>
+    <div class="progress-line"></div>
+    <a href="#projects" class="progress-node" data-section="projects" aria-label="Projets">
+      <span class="node-dot"></span>
+      <span class="node-label" data-i18n="nav.projects">Projects</span>
+    </a>
+    <div class="progress-line"></div>
+    <a href="#contact" class="progress-node" data-section="contact" aria-label="Contact">
+      <span class="node-dot"></span>
+      <span class="node-label" data-i18n="nav.contact">Contact</span>
+    </a>
+  </nav>
+
+  <!-- Three.js Canvas (for 3D hero effect) -->
+  <div id="threeCanvas" class="three-canvas"></div>
+
+  <!-- ==========================================
+       SECTION 1: HERO - Webhook Trigger
+       ========================================== -->
+  <section id="hero" class="section section--hero">
+    <div class="hero-container">
+      <!-- 3D Node Webhook -->
+      <div class="node-3d node-webhook" data-depth="0.2">
+        <div class="node-face node-face--front">
+          <div class="node-header node-header--trigger">
+            <img src="https://res.cloudinary.com/dttleawx6/image/upload/v1769287654/webhook_dxqtct.svg" alt="" class="node-icon" loading="eager">
+            <span class="node-title">Webhook</span>
+          </div>
+          <div class="node-body">
+            <div class="node-field">
+              <span class="field-label" data-i18n="hero.method">Method</span>
+              <span class="field-value">GET</span>
+            </div>
+            <div class="node-field">
+              <span class="field-label" data-i18n="hero.path">Path</span>
+              <span class="field-value">/teina</span>
+            </div>
+          </div>
+        </div>
+        <div class="node-face node-face--right"></div>
+        <div class="node-face node-face--bottom"></div>
+        <div class="node-connector node-connector--output"></div>
+      </div>
+
+    </div>
+
+    <!-- Mobile Skills Overlay (visible during zoom on mobile) -->
+    <div class="mobile-skills-overlay" aria-hidden="true">
+      <div class="mobile-skill-bubble" style="--delay: 0s"><span>⚡</span><span>n8n</span></div>
+      <div class="mobile-skill-bubble" style="--delay: 0.2s"><span>🗄️</span><span>Supabase</span></div>
+      <div class="mobile-skill-bubble" style="--delay: 0.4s"><span>🤖</span><span>AI</span></div>
+      <div class="mobile-skill-bubble" style="--delay: 0.6s"><span>🔍</span><span>Scraping</span></div>
+      <div class="mobile-skill-bubble" style="--delay: 0.1s"><span>🛠️</span><span>TypeScript</span></div>
+      <div class="mobile-skill-bubble" style="--delay: 0.3s"><span>📡</span><span>API</span></div>
+      <div class="mobile-skill-bubble" style="--delay: 0.5s"><span>💾</span><span>PostgreSQL</span></div>
+      <div class="mobile-skill-bubble" style="--delay: 0.7s"><span>📱</span><span>Telegram</span></div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 2: ABOUT - Inside Webhook (Expanded)
+       ========================================== -->
+  <section id="about" class="section section--about">
+    <div class="webhook-expanded">
+      <div class="webhook-header">
+        <span class="webhook-status" data-i18n="about.status">● Triggered</span>
+        <span class="webhook-timestamp" data-i18n="about.timestamp">Just now</span>
+      </div>
+
+      <div class="webhook-payload">
+        <!-- Profile Card -->
+        <div class="profile-card">
+          <img
+            src="https://res.cloudinary.com/dttleawx6/image/upload/v1769290753/Generated_Image_November_11_2025_-_3_48PM_untrzs.png"
+            alt="Teina Teinauri"
+            class="profile-photo"
+            loading="lazy"
+          >
+          <div class="profile-info">
+            <h1 class="profile-name">Teina Teinauri</h1>
+            <p class="profile-title" data-i18n="about.title">Expert Automatisation & IA</p>
+            <p class="profile-location">📍 Toulouse, France</p>
+            <p class="profile-company">🏢 Freelance</p>
+          </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-prefix">+</span>
+            <span class="stat-value" data-count="40">0</span>
+            <span class="stat-label" data-i18n="about.stats.workflows">Workflows n8n</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-prefix">+</span>
+            <span class="stat-value" data-count="20">0</span>
+            <span class="stat-label" data-i18n="about.stats.functions">Edge Functions</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-prefix">~</span>
+            <span class="stat-value" data-count="60">0</span>
+            <span class="stat-suffix">%</span>
+            <span class="stat-label" data-i18n="about.stats.timeSaved">Temps économisé</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" data-count="103000">0</span>
+            <span class="stat-suffix">+</span>
+            <span class="stat-label" data-i18n="about.stats.records">Enregistrements</span>
+          </div>
+        </div>
+
+        <!-- Story Block -->
+        <div class="story-block">
+          <h2 data-i18n="about.storyTitle">Mon histoire</h2>
+          <p class="story-text" data-i18n="about.storyText">
+            Août 2024. Arrivé en France depuis la Nouvelle-Calédonie, loin de ma zone de confort.
+            En explorant des idées de business, j'ai découvert n8n et l'automatisation.
+            Pour quelqu'un qui n'avait <strong>jamais utilisé un ordi au travail</strong>, c'était un saut dans l'inconnu.
+            Mais ça a résonné comme une évidence.
+          </p>
+          <blockquote class="story-quote">
+            <p data-i18n="about.quote">"Si moi, parti de zéro, j'ai pu apprendre tout ça - alors tout est possible."</p>
+          </blockquote>
+        </div>
+
+        <!-- Values -->
+        <div class="values-block">
+          <h3 data-i18n="about.valuesTitle">Valeurs polynésiennes</h3>
+          <div class="values-grid">
+            <div class="value-item">
+              <span class="value-icon">🤝</span>
+              <span class="value-label" data-i18n="about.values.respect">Respect</span>
+            </div>
+            <div class="value-item">
+              <span class="value-icon">🙏</span>
+              <span class="value-label" data-i18n="about.values.humility">Humilité</span>
+            </div>
+            <div class="value-item">
+              <span class="value-icon">💝</span>
+              <span class="value-label" data-i18n="about.values.sharing">Partage</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 3: SKILLS - Hard Skills
+       ========================================== -->
+  <section id="skills" class="section section--skills">
+    <div class="skills-container">
+      <h2 class="section-title" data-i18n="skills.title">Compétences</h2>
+      <p class="section-subtitle" data-i18n="skills.subtitle">Acquises en autodidacte depuis août 2024</p>
+
+      <div class="skills-grid">
+        <!-- Automatisation -->
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <span class="skill-icon">⚡</span>
+            <h3 data-i18n="skills.automation.title">Automatisation</h3>
+          </div>
+          <ul class="skill-list">
+            <li>n8n (workflows complexes)</li>
+            <li>Webhooks & API REST</li>
+            <li>Orchestration multi-services</li>
+            <li>Cron jobs & triggers</li>
+          </ul>
+        </div>
+
+        <!-- Architecture Data -->
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <span class="skill-icon">🗄️</span>
+            <h3 data-i18n="skills.data.title">Architecture Data</h3>
+          </div>
+          <ul class="skill-list">
+            <li>Supabase / PostgreSQL</li>
+            <li>Edge Functions (Deno)</li>
+            <li>RLS & sécurité</li>
+            <li>Modélisation relationnelle</li>
+          </ul>
+        </div>
+
+        <!-- Intelligence Artificielle -->
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <span class="skill-icon">🤖</span>
+            <h3 data-i18n="skills.ai.title">Intelligence Artificielle</h3>
+          </div>
+          <ul class="skill-list">
+            <li>OpenAI API / Claude</li>
+            <li>Agents IA conversationnels</li>
+            <li>Prompting avancé</li>
+            <li>RAG & embeddings</li>
+          </ul>
+        </div>
+
+        <!-- Scraping & Parsing -->
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <span class="skill-icon">🔍</span>
+            <h3 data-i18n="skills.scraping.title">Scraping & Parsing</h3>
+          </div>
+          <ul class="skill-list">
+            <li>Extraction de données web</li>
+            <li>Parsing HTML/JSON</li>
+            <li>Nettoyage & transformation</li>
+            <li>Automatisation de veille</li>
+          </ul>
+        </div>
+
+        <!-- Outils & Déploiement -->
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <span class="skill-icon">🛠️</span>
+            <h3 data-i18n="skills.tools.title">Outils & Déploiement</h3>
+          </div>
+          <ul class="skill-list">
+            <li>Git & GitHub</li>
+            <li>TypeScript / JavaScript</li>
+            <li>Telegram Bot API</li>
+            <li>Cloudinary / APIs tierces</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="skills-journey">
+        <p data-i18n="skills.journey"><strong>Parcours :</strong> Cariste pendant 6 ans → Découverte de n8n en août 2024 → +40 workflows créés en 5 mois</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 4: PROJECTS - Canvas Workflow
+       ========================================== -->
+  <section id="projects" class="section section--projects">
+    <div class="projects-container">
+      <div class="canvas-header">
+        <h2 data-i18n="projects.title">Mes Projets</h2>
+        <p data-i18n="projects.subtitle">Cliquez sur un node pour voir les détails</p>
+
+        <!-- Category Filters -->
+        <div class="category-filters">
+          <button class="filter-btn active" data-filter="all" data-i18n="projects.filters.all">Tous</button>
+          <button class="filter-btn" data-filter="workflows-n8n" data-i18n="projects.filters.workflows">Workflows</button>
+          <button class="filter-btn" data-filter="sync-multisite" data-i18n="projects.filters.sync">Sync</button>
+          <button class="filter-btn" data-filter="architecture-data" data-i18n="projects.filters.data">Data</button>
+        </div>
+      </div>
+
+      <div class="canvas-viewport">
+        <div class="canvas-grid"></div>
+        <div class="canvas-nodes" id="projectNodes">
+          <!-- Nodes générés dynamiquement depuis projects.json -->
+        </div>
+        <svg class="canvas-connections" id="projectConnections">
+          <!-- Connexions SVG générées dynamiquement -->
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 5: CONTACT - Email Node
+       ========================================== -->
+  <section id="contact" class="section section--contact">
+    <div class="contact-container">
+      <div class="email-node-wrapper">
+        <div class="node node--communication node-email">
+          <div class="node-header node-header--communication">
+            <img src="https://res.cloudinary.com/dttleawx6/image/upload/v1769287654/gmail_vpsbyd.svg" alt="" class="node-icon">
+            <span class="node-title">Send Email</span>
+          </div>
+          <div class="node-body">
+            <form class="contact-form" id="contactForm" novalidate>
+              <div class="form-field">
+                <label for="email-to">To</label>
+                <input type="text" id="email-to" value="teinateinauri@gmail.com" readonly tabindex="-1">
+              </div>
+              <div class="form-field">
+                <label for="email-from">From</label>
+                <input
+                  type="email"
+                  id="email-from"
+                  name="email"
+                  placeholder="votre@email.com"
+                  required
+                  autocomplete="email"
+                >
+                <span class="field-error" data-i18n="contact.errors.email">Email invalide</span>
+              </div>
+              <div class="form-field">
+                <label for="email-subject">Subject</label>
+                <input
+                  type="text"
+                  id="email-subject"
+                  name="subject"
+                  placeholder="Collaboration"
+                  required
+                >
+                <span class="field-error" data-i18n="contact.errors.subject">Sujet requis</span>
+              </div>
+              <div class="form-field">
+                <label for="email-body">Message</label>
+                <textarea
+                  id="email-body"
+                  name="message"
+                  rows="4"
+                  placeholder="Votre message..."
+                  required
+                ></textarea>
+                <span class="field-error" data-i18n="contact.errors.message">Message requis</span>
+              </div>
+              <button type="submit" class="btn-execute">
+                <span class="btn-icon">▶</span>
+                <span data-i18n="contact.submit">Execute Workflow</span>
+              </button>
+            </form>
+
+            <!-- Success Message -->
+            <div class="form-success" hidden>
+              <span class="success-icon">✅</span>
+              <p data-i18n="contact.success">Workflow exécuté avec succès !</p>
+            </div>
+          </div>
+          <div class="node-connector node-connector--input"></div>
+        </div>
+      </div>
+
+      <!-- Contact Links -->
+      <div class="contact-links">
+        <a href="https://linkedin.com/in/teina-automatise" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <span class="link-icon">💼</span>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://linkedin.com/in/teina-automatise" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <span class="link-icon">🌐</span>
+          <span>Portfolio</span>
+        </a>
+        <a href="https://calendly.com/teinateinauri/30min" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <span class="link-icon">📅</span>
+          <span data-i18n="contact.calendly">Prendre RDV</span>
+        </a>
+      </div>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <p>© 2026 Teina Teinauri</p>
+        <p class="footer-tagline" data-i18n="footer.tagline">Crafted with n8n spirit ⚡</p>
+      </footer>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       PROJECT MODAL (outside sections for z-index)
+       ========================================== -->
+  <div class="project-modal" id="projectModal" hidden aria-modal="true" role="dialog">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Fermer">×</button>
+
+      <div class="modal-header">
+        <div class="modal-icon"></div>
+        <div class="modal-titles">
+          <h3 class="modal-title"></h3>
+          <span class="modal-tag"></span>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-description"></p>
+
+        <div class="modal-metrics"></div>
+
+        <div class="modal-workflow">
+          <h4 data-i18n="projects.modal.workflow">Workflow</h4>
+          <p class="workflow-steps"></p>
+        </div>
+
+        <div class="modal-tech">
+          <h4 data-i18n="projects.modal.tech">Technologies</h4>
+          <div class="tech-tags"></div>
+        </div>
+
+        <div class="modal-links">
+          <a href="#" class="modal-link modal-link--demo" target="_blank" rel="noopener noreferrer" hidden>
+            <span class="link-icon">🚀</span>
+            <span data-i18n="projects.modal.demo">Voir la démo</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="modal-image" hidden>
+        <img src="" alt="" class="modal-screenshot" loading="lazy">
+      </div>
+
+      <div class="modal-gallery" hidden>
+        <h4 data-i18n="projects.modal.gallery">Workflows</h4>
+        <div class="gallery-container">
+          <button class="gallery-nav gallery-prev" aria-label="Previous">‹</button>
+          <div class="gallery-viewport">
+            <img src="" alt="" class="gallery-image" loading="lazy">
+            <span class="gallery-caption"></span>
+          </div>
+          <button class="gallery-nav gallery-next" aria-label="Next">›</button>
+        </div>
+        <div class="gallery-dots"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SCRIPTS
+       ========================================== -->
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GSAP Core + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- App Modules -->
+  <script src="js/three-scene.js"></script>
+  <script src="js/scroll-animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

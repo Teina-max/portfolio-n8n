@@ -1,0 +1,334 @@
+{
+  "projects": [
+    {
+      "id": "multi-store-analytics",
+      "title": {
+        "fr": "Multi-Store Analytics",
+        "en": "Multi-Store Analytics"
+      },
+      "shortTitle": {
+        "fr": "Multi-Store",
+        "en": "Multi-Store"
+      },
+      "description": {
+        "fr": "Architecture complète d'analytics pour une chaîne de 6 magasins. Synchronisation temps réel depuis Hiboutik POS vers Supabase, 14 Edge Functions Deno, bot Telegram intelligent, et réconciliation automatique des données. 103K+ enregistrements, score qualité 100/100.",
+        "en": "Complete analytics architecture for a 6-store retail chain. Real-time sync from Hiboutik POS to Supabase, 14 Deno Edge Functions, intelligent Telegram bot, and automatic data reconciliation. 103K+ records, 100/100 quality score."
+      },
+      "category": "architecture-data",
+      "tag": "Supabase + n8n",
+      "featured": true,
+      "nodeConfig": {
+        "type": "data",
+        "iconKey": "supabase",
+        "iconUrl": "https://res.cloudinary.com/dttleawx6/image/upload/v1769287656/supabase_nruncw.svg",
+        "color": "#333333",
+        "position": { "x": 150, "y": 180 }
+      },
+      "metrics": [
+        { "label": "Magasins", "value": "6" },
+        { "label": "Ventes", "value": "103K+" },
+        { "label": "Edge Functions", "value": "14" },
+        { "label": "Qualité", "value": "100/100" }
+      ],
+      "tech": ["Supabase", "PostgreSQL", "Deno", "Edge Functions", "n8n", "Telegram Bot"],
+      "image": "https://res.cloudinary.com/dttleawx6/image/upload/v1767132059/Sync_API_Main_jwsgbv.png",
+      "links": { "github": null, "demo": null },
+      "icons": ["supabase", "webhook", "telegram", "cron"]
+    },
+    {
+      "id": "unified-analytics",
+      "title": {
+        "fr": "Unified Analytics API",
+        "en": "Unified Analytics API"
+      },
+      "shortTitle": {
+        "fr": "Analytics API",
+        "en": "Analytics API"
+      },
+      "description": {
+        "fr": "API Edge Function modulaire (v3.8) avec 22 actions analytiques : ventes, stocks, vendeurs, clients, catégories. Architecture TypeScript avec helpers partagés, pagination intelligente et cache. Gère +50K requêtes/mois.",
+        "en": "Modular Edge Function API (v3.8) with 22 analytical actions: sales, inventory, vendors, customers, categories. TypeScript architecture with shared helpers, smart pagination and caching. Handles +50K requests/month."
+      },
+      "category": "architecture-data",
+      "tag": "Edge Functions",
+      "featured": true,
+      "nodeConfig": {
+        "type": "data",
+        "iconKey": "supabase",
+        "iconUrl": "https://res.cloudinary.com/dttleawx6/image/upload/v1769287656/supabase_nruncw.svg",
+        "color": "#333333",
+        "position": { "x": 400, "y": 150 }
+      },
+      "metrics": [
+        { "label": "Actions", "value": "22" },
+        { "label": "Version", "value": "v3.8" },
+        { "label": "Latence", "value": "<200ms" }
+      ],
+      "tech": ["Supabase", "Deno", "TypeScript", "PostgreSQL", "Edge Functions"],
+      "image": null,
+      "links": { "github": null, "demo": null },
+      "icons": ["supabase", "code", "httprequest"]
+    },
+    {
+      "id": "data-reconciliation",
+      "title": {
+        "fr": "Data Reconciliation System",
+        "en": "Data Reconciliation System"
+      },
+      "shortTitle": {
+        "fr": "Réconciliation",
+        "en": "Reconciliation"
+      },
+      "description": {
+        "fr": "Système automatisé de réconciliation des données entre Supabase et Hiboutik API. Détecte les ventes manquantes, doublons et orphelins. Auto-fix avec backup, alertes Telegram, exécution quotidienne via pg_cron.",
+        "en": "Automated data reconciliation system between Supabase and Hiboutik API. Detects missing sales, duplicates and orphans. Auto-fix with backup, Telegram alerts, daily execution via pg_cron."
+      },
+      "category": "workflows-n8n",
+      "tag": "n8n + Supabase",
+      "featured": true,
+      "nodeConfig": {
+        "type": "trigger",
+        "iconKey": "cron",
+        "iconUrl": "https://res.cloudinary.com/dttleawx6/image/upload/v1769287656/cron_evanat.svg",
+        "color": "#333333",
+        "position": { "x": 300, "y": 350 }
+      },
+      "metrics": [
+        { "label": "Réconciliation", "value": "Auto" },
+        { "label": "Cycle", "value": "24h" },
+        { "label": "Précision", "value": "99.8%" }
+      ],
+      "tech": ["Supabase", "Edge Functions", "pg_cron", "Telegram", "Deno"],
+      "image": null,
+      "links": { "github": null, "demo": null },
+      "icons": ["cron", "supabase", "telegram"]
+    },
+    {
+      "id": "webhook-hiboutik",
+      "title": {
+        "fr": "Webhook Hiboutik Sale",
+        "en": "Hiboutik Sale Webhook"
+      },
+      "shortTitle": {
+        "fr": "Webhook Ventes",
+        "en": "Sales Webhook"
+      },
+      "description": {
+        "fr": "Webhook temps réel (v3.12) pour capturer chaque vente Hiboutik. Auto-enrichissement produits/marques/clients, mapping vendeurs cross-API, hiérarchie catégories. Traite +500 ventes/jour sans perte.",
+        "en": "Real-time webhook (v3.12) to capture every Hiboutik sale. Auto-enrichment for products/brands/customers, cross-API vendor mapping, category hierarchy. Processes +500 sales/day with zero loss."
+      },
+      "category": "sync-multisite",
+      "tag": "Real-time Sync",
+      "featured": true,
+      "nodeConfig": {
+        "type": "trigger",
+        "iconKey": "webhook",
+        "iconUrl": "https://res.cloudinary.com/dttleawx6/image/upload/v1769287654/webhook_dxqtct.svg",
+        "color": "#333333",
+        "position": { "x": 550, "y": 280 }
+      },
+      "metrics": [
+        { "label": "Sync", "value": "Real-time" },
+        { "label": "Ventes", "value": "+500/j" },
+        { "label": "Perte", "value": "0" }
+      ],
+      "tech": ["Deno", "Edge Functions", "Hiboutik API", "PostgreSQL"],
+      "image": null,
+      "links": { "github": null, "demo": null },
+      "icons": ["webhook", "supabase", "httprequest"]
+    },
+    {
+      "id": "telegram-bot",
+      "title": {
+        "fr": "Bot Telegram Analytics",
+        "en": "Telegram Analytics Bot"
+      },
+      "shortTitle": {
+        "fr": "Bot Telegram",
+        "en": "Telegram Bot"
+      },
+      "description": {
+        "fr": "Bot Telegram intelligent pour interroger les analytics en langage naturel. Agent IA avec outils Supabase, alertes automatiques stock/qualité, notifications temps réel des ventes.",
+        "en": "Intelligent Telegram bot to query analytics in natural language. AI agent with Supabase tools, automatic stock/quality alerts, real-time sales notifications."
+      },
+      "category": "workflows-n8n",
+      "tag": "AI Bot",
+      "featured": true,
+      "nodeConfig": {
+        "type": "communication",
+        "iconKey": "telegram",
+        "iconUrl": "https://res.cloudinary.com/dttleawx6/image/upload/v1769287655/telegram_w69bqd.svg",
+        "color": "#333333",
+        "position": { "x": 200, "y": 450 }
+      },
+      "metrics": [
+        { "label": "Langage naturel", "value": "NLP" },
+        { "label": "Disponible", "value": "24/7" }
+      ],
+      "tech": ["n8n", "OpenAI", "Telegram", "Supabase"],
+      "image": "https://res.cloudinary.com/dttleawx6/image/upload/v1769307669/Capture_d_%C3%A9cran_2026-01-25_032058_x1wqx9.png",
+      "links": { "github": null, "demo": null },
+      "icons": ["telegram", "openai", "supabase"]
+    },
+    {
+      "id": "restaurant-dashboard",
+      "title": {
+        "fr": "Restaurant Dashboard",
+        "en": "Restaurant Dashboard"
+      },
+      "shortTitle": {
+        "fr": "Restaurant DB",
+        "en": "Restaurant DB"
+      },
+      "description": {
+        "fr": "Dashboard de gestion pour restaurant avec base de données Supabase. Suivi des commandes, gestion des stocks, analytics temps réel et interface moderne.",
+        "en": "Restaurant management dashboard with Supabase database. Order tracking, inventory management, real-time analytics and modern interface."
+      },
+      "category": "architecture-data",
+      "tag": "Dashboard",
+      "featured": true,
+      "nodeConfig": {
+        "type": "data",
+        "iconKey": "supabase",
+        "iconUrl": "https://res.cloudinary.com/dttleawx6/image/upload/v1769287656/supabase_nruncw.svg",
+        "color": "#333333",
+        "position": { "x": 480, "y": 420 }
+      },
+      "metrics": [
+        { "label": "Analytics", "value": "Real-time" },
+        { "label": "Database", "value": "PostgreSQL" }
+      ],
+      "tech": ["Supabase", "PostgreSQL", "Edge Functions", "React"],
+      "image": null,
+      "links": { "github": null, "demo": "https://restaurant-dashboard-sfw8.vercel.app/dashboard" },
+      "icons": ["supabase", "code"]
+    },
+    {
+      "id": "audit-ia",
+      "title": {
+        "fr": "Audit-IA - Audit Digital Automatisé",
+        "en": "Audit-IA - Automated Digital Audit"
+      },
+      "shortTitle": {
+        "fr": "Audit-IA",
+        "en": "Audit-IA"
+      },
+      "description": {
+        "fr": "API backend d'audit digital et stratégique pour entreprises. 9 workflows n8n orchestrant 5 agents IA spécialisés : présence digitale, concurrence, marché, offre et profil. Scraping Firecrawl, analyse Claude, stockage Supabase, génération PDF. Score global /100 avec recommandations et suggestions d'outils IA sur mesure.",
+        "en": "Digital and strategic audit API backend for businesses. 9 n8n workflows orchestrating 5 specialized AI agents: digital presence, competitors, market, offer and profile. Firecrawl scraping, Claude analysis, Supabase storage, PDF generation. Global score /100 with recommendations and custom AI tool suggestions."
+      },
+      "category": "workflows-n8n",
+      "tag": "AI Audit",
+      "featured": true,
+      "nodeConfig": {
+        "type": "ai",
+        "iconKey": "openai",
+        "iconUrl": "https://res.cloudinary.com/dttleawx6/image/upload/v1769287656/openAi_tsx74r.svg",
+        "color": "#333333",
+        "position": { "x": 100, "y": 320 }
+      },
+      "metrics": [
+        { "label": "Workflows", "value": "9" },
+        { "label": "Agents IA", "value": "5" },
+        { "label": "Score", "value": "/100" },
+        { "label": "Output", "value": "PDF" }
+      ],
+      "tech": ["n8n", "Claude AI", "Firecrawl", "Supabase", "Puppeteer", "TypeScript"],
+      "image": "https://res.cloudinary.com/dttleawx6/image/upload/v1769304456/Capture_d_%C3%A9cran_2026-01-25_022325_ohc764.png",
+      "gallery": [
+        {
+          "title": "01 - API Endpoints",
+          "url": "https://res.cloudinary.com/dttleawx6/image/upload/v1769304456/Capture_d_%C3%A9cran_2026-01-25_022151_wksguk.png"
+        },
+        {
+          "title": "02 - Orchestrator",
+          "url": "https://res.cloudinary.com/dttleawx6/image/upload/v1769304456/Capture_d_%C3%A9cran_2026-01-25_022325_ohc764.png"
+        },
+        {
+          "title": "03 - Agent Digital Presence",
+          "url": "https://res.cloudinary.com/dttleawx6/image/upload/v1769304456/Capture_d_%C3%A9cran_2026-01-25_022410_okedvj.png"
+        },
+        {
+          "title": "04 - Agent Competitors",
+          "url": "https://res.cloudinary.com/dttleawx6/image/upload/v1769304456/Capture_d_%C3%A9cran_2026-01-25_022457_nkxzox.png"
+        },
+        {
+          "title": "05 - Agent Market",
+          "url": "https://res.cloudinary.com/dttleawx6/image/upload/v1769304456/Capture_d_%C3%A9cran_2026-01-25_022534_fyqe8h.png"
+        },
+        {
+          "title": "06 - Agent Offer",
+          "url": "https://res.cloudinary.com/dttleawx6/image/upload/v1769304456/Capture_d_%C3%A9cran_2026-01-25_022553_y420zz.png"
+        },
+        {
+          "title": "07 - Agent Profile",
+          "url": "https://res.cloudinary.com/dttleawx6/image/upload/v1769304456/Capture_d_%C3%A9cran_2026-01-25_022609_xdjhld.png"
+        },
+        {
+          "title": "08 - Synthesis & Report",
+          "url": "https://res.cloudinary.com/dttleawx6/image/upload/v1769304456/Capture_d_%C3%A9cran_2026-01-25_022622_ikkvhb.png"
+        },
+        {
+          "title": "09 - PDF Generator",
+          "url": "https://res.cloudinary.com/dttleawx6/image/upload/v1769304456/Capture_d_%C3%A9cran_2026-01-25_022639_faqjwj.png"
+        }
+      ],
+      "links": { "github": null, "demo": "https://auditia-roan.vercel.app/" },
+      "icons": ["openai", "code", "merge"]
+    },
+    {
+      "id": "sync-orchestrator",
+      "title": {
+        "fr": "Orchestrateur de Synchronisation",
+        "en": "Sync Orchestrator"
+      },
+      "shortTitle": {
+        "fr": "Orchestrateur",
+        "en": "Orchestrator"
+      },
+      "description": {
+        "fr": "Orchestration complète des syncs multi-API via n8n et pg_cron. Sync master data à 6h, quality check à 7h, réconciliation à 8h. Parallélisation et gestion d'erreurs.",
+        "en": "Complete multi-API sync orchestration via n8n and pg_cron. Master data sync at 6am, quality check at 7am, reconciliation at 8am. Parallelization and error handling."
+      },
+      "category": "sync-multisite",
+      "tag": "Orchestration",
+      "featured": true,
+      "nodeConfig": {
+        "type": "trigger",
+        "iconKey": "cron",
+        "iconUrl": "https://res.cloudinary.com/dttleawx6/image/upload/v1769287656/cron_evanat.svg",
+        "color": "#333333",
+        "position": { "x": 350, "y": 520 }
+      },
+      "metrics": [
+        { "label": "Jobs/jour", "value": "3" },
+        { "label": "Scheduler", "value": "pg_cron" }
+      ],
+      "tech": ["n8n", "pg_cron", "Supabase", "Edge Functions"],
+      "image": "https://res.cloudinary.com/dttleawx6/image/upload/v1767132059/Workflows_Trigger_Instantly_2_Sync_o8qab1.png",
+      "links": { "github": null, "demo": null },
+      "icons": ["cron", "merge", "supabase"]
+    }
+  ],
+  "categories": [
+    { "id": "all", "label": { "fr": "Tous", "en": "All" } },
+    { "id": "architecture-data", "label": { "fr": "Architecture Data", "en": "Data Architecture" } },
+    { "id": "workflows-n8n", "label": { "fr": "Workflows n8n", "en": "n8n Workflows" } },
+    { "id": "sync-multisite", "label": { "fr": "Sync Multi-Sites", "en": "Multi-Site Sync" } }
+  ],
+  "icons": {
+    "baseUrl": "https://res.cloudinary.com/dttleawx6/image/upload/v1769289827/",
+    "mapping": {
+      "webhook": "webhook_dxqtct.svg",
+      "if": "If_co1idj.svg",
+      "merge": "merge_umcsrt.svg",
+      "supabase": "supabase_nruncw.svg",
+      "openai": "openAi_tsx74r.svg",
+      "telegram": "telegram_w69bqd.svg",
+      "gmail": "gmail_vpsbyd.svg",
+      "httprequest": "httprequest_rst7qw.svg",
+      "code": "code_fd7vx3.svg",
+      "cron": "cron_evanat.svg"
+    }
+  }
+}
