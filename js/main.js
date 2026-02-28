@@ -168,6 +168,7 @@ async function init() {
   setupScrollProgress();
   setupContactForm();
   setupFilterButtons();
+  setupScrollToTop();
 
   // Load projects
   await loadProjects();
@@ -183,6 +184,9 @@ async function init() {
     scrollAnimations = new ScrollAnimations(n8nScene);
     console.log('Scroll animations initialized');
   }
+
+  // Cursor glow (desktop only)
+  setupCursorGlow();
 
   console.log('Portfolio ready ⚡');
 }
@@ -375,6 +379,13 @@ function createProjectNode(project, index) {
 // DRAGGABLE NODES
 // ============================================
 function makeDraggable(node, project, index) {
+  // On mobile: simple tap to open modal, no drag
+  if (window.innerWidth < 768) {
+    node.addEventListener('click', () => openProjectModal(project));
+    node.style.cursor = 'pointer';
+    return;
+  }
+
   let isDragging = false;
   let hasMoved = false;
   let startX, startY, initialX, initialY;
@@ -741,6 +752,22 @@ function drawConnectionsFiltered(allProjects, visibleProjects) {
 }
 
 // ============================================
+// SCROLL-TO-TOP
+// ============================================
+function setupScrollToTop() {
+  const btn = document.getElementById('scrollToTop');
+  if (!btn) return;
+
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// ============================================
 // CONTACT FORM
 // ============================================
 // N8N Webhook URL - Replace with your actual webhook URL
@@ -838,4 +865,33 @@ function setupContactForm() {
       }
     }
   });
+}
+
+// ============================================
+// CURSOR GLOW (desktop only)
+// ============================================
+function setupCursorGlow() {
+  if (window.innerWidth < 768) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const glow = document.createElement('div');
+  glow.className = 'cursor-glow';
+  document.body.appendChild(glow);
+
+  let mouseX = -300, mouseY = -300;
+  let currentX = -300, currentY = -300;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  }, { passive: true });
+
+  function animate() {
+    currentX += (mouseX - currentX) * 0.12;
+    currentY += (mouseY - currentY) * 0.12;
+    glow.style.left = `${currentX}px`;
+    glow.style.top = `${currentY}px`;
+    requestAnimationFrame(animate);
+  }
+  animate();
 }

@@ -47,6 +47,44 @@ class ScrollAnimations {
       section.style.opacity = '1';
       section.style.transform = 'none';
     });
+    // Also reveal hero elements immediately
+    document.querySelectorAll('.hero-eyebrow, .hero-name, .hero-tagline-text, .hero-cta-group').forEach((el) => {
+      el.style.opacity = '1';
+    });
+  }
+
+  /**
+   * Hero Intro — Staggered GSAP timeline
+   */
+  setupHeroIntro() {
+    const eyebrow = document.querySelector('.hero-eyebrow');
+    const name = document.querySelector('.hero-name');
+    const tagline = document.querySelector('.hero-tagline-text');
+    const ctas = document.querySelector('.hero-cta-group');
+
+    if (!eyebrow) return;
+
+    const tl = gsap.timeline({ delay: 0.2 });
+
+    tl.fromTo(eyebrow,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
+    )
+    .fromTo(name,
+      { opacity: 0, y: 24 },
+      { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
+      '-=0.2'
+    )
+    .fromTo(tagline,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+      '-=0.25'
+    )
+    .fromTo(ctas,
+      { opacity: 0, y: 16 },
+      { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+      '-=0.2'
+    );
   }
 
   /**
@@ -288,12 +326,20 @@ class ScrollAnimations {
         },
       });
 
-      // Hover parallax effect
-      card.addEventListener('mouseenter', () => {
+      // Cursor-based tilt effect
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateY = ((x - centerX) / centerX) * 8;
+        const rotateX = ((centerY - y) / centerY) * 8;
+
         gsap.to(card, {
-          y: -8,
-          rotateX: -5,
-          rotateY: 5,
+          rotateX: rotateX,
+          rotateY: rotateY,
+          y: -6,
           scale: 1.02,
           duration: 0.3,
           ease: 'power2.out',
@@ -306,7 +352,7 @@ class ScrollAnimations {
           rotateX: 0,
           rotateY: 0,
           scale: 1,
-          duration: 0.3,
+          duration: 0.4,
           ease: 'power2.out',
         });
       });

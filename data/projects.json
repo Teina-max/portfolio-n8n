@@ -11,8 +11,8 @@
         "en": "Multi-Store"
       },
       "description": {
-        "fr": "Architecture complète d'analytics pour une chaîne de 6 magasins. Synchronisation temps réel depuis Hiboutik POS vers Supabase, 14 Edge Functions Deno, bot Telegram intelligent, et réconciliation automatique des données. 103K+ enregistrements, score qualité 100/100.",
-        "en": "Complete analytics architecture for a 6-store retail chain. Real-time sync from Hiboutik POS to Supabase, 14 Deno Edge Functions, intelligent Telegram bot, and automatic data reconciliation. 103K+ records, 100/100 quality score."
+        "fr": "Un réseau de 6 magasins gérait ses ventes à l'aveugle — pas de vue consolidée, pas de suivi fiable. J'ai construit une architecture complète de sync temps réel vers Supabase avec 14 Edge Functions et un bot Telegram pour consulter les KPIs à la demande. Résultat : 103K+ enregistrements synchronisés, score qualité 100/100, et des décisions enfin basées sur la data.",
+        "en": "A 6-store retail chain was flying blind — no consolidated view, no reliable tracking. I built a complete real-time sync architecture to Supabase with 14 Edge Functions and a Telegram bot for on-demand KPI queries. Result: 103K+ synchronized records, 100/100 quality score, and decisions finally driven by data."
       },
       "category": "architecture-data",
       "tag": "Supabase + n8n",
@@ -25,11 +25,12 @@
         "position": { "x": 150, "y": 180 }
       },
       "metrics": [
-        { "label": "Magasins", "value": "6" },
-        { "label": "Ventes", "value": "103K+" },
+        { "label": { "fr": "Magasins", "en": "Stores" }, "value": "6" },
+        { "label": { "fr": "Ventes sync", "en": "Synced sales" }, "value": "103K+" },
         { "label": "Edge Functions", "value": "14" },
-        { "label": "Qualité", "value": "100/100" }
+        { "label": { "fr": "Qualité données", "en": "Data quality" }, "value": "100/100" }
       ],
+      "workflow": "Hiboutik POS → Webhook n8n → Transform & Enrich → Supabase (14 Edge Functions) → Telegram Bot alerts",
       "tech": ["Supabase", "PostgreSQL", "Deno", "Edge Functions", "n8n", "Telegram Bot"],
       "image": "https://res.cloudinary.com/dttleawx6/image/upload/v1767132059/Sync_API_Main_jwsgbv.png",
       "links": { "github": null, "demo": null },
@@ -46,8 +47,8 @@
         "en": "Analytics API"
       },
       "description": {
-        "fr": "API Edge Function modulaire (v3.8) avec 22 actions analytiques : ventes, stocks, vendeurs, clients, catégories. Architecture TypeScript avec helpers partagés, pagination intelligente et cache. Gère +50K requêtes/mois.",
-        "en": "Modular Edge Function API (v3.8) with 22 analytical actions: sales, inventory, vendors, customers, categories. TypeScript architecture with shared helpers, smart pagination and caching. Handles +50K requests/month."
+        "fr": "Le bot Telegram et les dashboards avaient besoin d'une source de données unique et rapide. J'ai conçu une API modulaire en TypeScript avec 22 endpoints analytiques (ventes, stocks, vendeurs, clients). Pagination intelligente, cache intégré, latence <200ms. Elle alimente toute l'intelligence du système.",
+        "en": "The Telegram bot and dashboards needed a single, fast data source. I designed a modular TypeScript API with 22 analytical endpoints (sales, inventory, vendors, customers). Smart pagination, built-in caching, <200ms latency. It powers the entire system's intelligence."
       },
       "category": "architecture-data",
       "tag": "Edge Functions",
@@ -60,10 +61,12 @@
         "position": { "x": 400, "y": 150 }
       },
       "metrics": [
-        { "label": "Actions", "value": "22" },
+        { "label": "Endpoints", "value": "22" },
         { "label": "Version", "value": "v3.8" },
-        { "label": "Latence", "value": "<200ms" }
+        { "label": { "fr": "Latence", "en": "Latency" }, "value": "<200ms" },
+        { "label": { "fr": "Requêtes/mois", "en": "Requests/mo" }, "value": "50K+" }
       ],
+      "workflow": "Client request → Edge Function router → Action handler → PostgreSQL query → Cached response",
       "tech": ["Supabase", "Deno", "TypeScript", "PostgreSQL", "Edge Functions"],
       "image": null,
       "links": { "github": null, "demo": null },
@@ -80,8 +83,8 @@
         "en": "Reconciliation"
       },
       "description": {
-        "fr": "Système automatisé de réconciliation des données entre Supabase et Hiboutik API. Détecte les ventes manquantes, doublons et orphelins. Auto-fix avec backup, alertes Telegram, exécution quotidienne via pg_cron.",
-        "en": "Automated data reconciliation system between Supabase and Hiboutik API. Detects missing sales, duplicates and orphans. Auto-fix with backup, Telegram alerts, daily execution via pg_cron."
+        "fr": "Quand on synchronise +500 ventes/jour entre deux systèmes, des écarts apparaissent. Ce système tourne chaque nuit et détecte automatiquement les ventes manquantes, doublons et orphelins — puis les corrige avec backup. Alerte Telegram si anomalie. Précision maintenue à 99.8% sans intervention humaine.",
+        "en": "When syncing 500+ sales/day between two systems, discrepancies happen. This system runs nightly and automatically detects missing sales, duplicates and orphans — then fixes them with backup. Telegram alert on anomalies. 99.8% accuracy maintained with zero human intervention."
       },
       "category": "workflows-n8n",
       "tag": "n8n + Supabase",
@@ -94,10 +97,12 @@
         "position": { "x": 300, "y": 350 }
       },
       "metrics": [
-        { "label": "Réconciliation", "value": "Auto" },
-        { "label": "Cycle", "value": "24h" },
-        { "label": "Précision", "value": "99.8%" }
+        { "label": { "fr": "Mode", "en": "Mode" }, "value": "Auto-fix" },
+        { "label": { "fr": "Cycle", "en": "Cycle" }, "value": "24h" },
+        { "label": { "fr": "Précision", "en": "Accuracy" }, "value": "99.8%" },
+        { "label": { "fr": "Intervention", "en": "Human input" }, "value": "0" }
       ],
+      "workflow": "pg_cron trigger (8h) → Fetch Hiboutik sales → Compare with Supabase → Detect gaps/duplicates → Auto-fix + backup → Telegram report",
       "tech": ["Supabase", "Edge Functions", "pg_cron", "Telegram", "Deno"],
       "image": null,
       "links": { "github": null, "demo": null },
@@ -114,8 +119,8 @@
         "en": "Sales Webhook"
       },
       "description": {
-        "fr": "Webhook temps réel (v3.12) pour capturer chaque vente Hiboutik. Auto-enrichissement produits/marques/clients, mapping vendeurs cross-API, hiérarchie catégories. Traite +500 ventes/jour sans perte.",
-        "en": "Real-time webhook (v3.12) to capture every Hiboutik sale. Auto-enrichment for products/brands/customers, cross-API vendor mapping, category hierarchy. Processes +500 sales/day with zero loss."
+        "fr": "Chaque vente doit arriver en base en temps réel, enrichie et prête à l'analyse. Ce webhook capture les ventes Hiboutik à la volée, enrichit automatiquement les données (produit, marque, client, vendeur) via mapping cross-API, et insère le tout dans Supabase. +500 ventes/jour, zéro perte.",
+        "en": "Every sale must reach the database in real-time, enriched and ready for analysis. This webhook captures Hiboutik sales on the fly, auto-enriches data (product, brand, customer, vendor) via cross-API mapping, and inserts everything into Supabase. 500+ sales/day, zero loss."
       },
       "category": "sync-multisite",
       "tag": "Real-time Sync",
@@ -129,9 +134,11 @@
       },
       "metrics": [
         { "label": "Sync", "value": "Real-time" },
-        { "label": "Ventes", "value": "+500/j" },
-        { "label": "Perte", "value": "0" }
+        { "label": { "fr": "Ventes/jour", "en": "Sales/day" }, "value": "500+" },
+        { "label": { "fr": "Perte de données", "en": "Data loss" }, "value": "0%" },
+        { "label": "Version", "value": "v3.12" }
       ],
+      "workflow": "Hiboutik sale event → Webhook Edge Function → Enrich (product, brand, vendor) → Validate → Insert Supabase → Confirm",
       "tech": ["Deno", "Edge Functions", "Hiboutik API", "PostgreSQL"],
       "image": null,
       "links": { "github": null, "demo": null },
@@ -148,8 +155,8 @@
         "en": "Telegram Bot"
       },
       "description": {
-        "fr": "Bot Telegram intelligent pour interroger les analytics en langage naturel. Agent IA avec outils Supabase, alertes automatiques stock/qualité, notifications temps réel des ventes.",
-        "en": "Intelligent Telegram bot to query analytics in natural language. AI agent with Supabase tools, automatic stock/quality alerts, real-time sales notifications."
+        "fr": "Le gérant ne veut pas ouvrir un dashboard — il veut poser une question et avoir la réponse. Ce bot Telegram comprend le langage naturel grâce à un agent IA, interroge Supabase en temps réel, et pousse des alertes automatiques (stock bas, anomalie qualité, vente exceptionnelle). Accessible 24/7 depuis n'importe où.",
+        "en": "The manager doesn't want to open a dashboard — they want to ask a question and get the answer. This Telegram bot understands natural language via an AI agent, queries Supabase in real-time, and pushes automatic alerts (low stock, quality anomaly, exceptional sale). Available 24/7 from anywhere."
       },
       "category": "workflows-n8n",
       "tag": "AI Bot",
@@ -162,9 +169,12 @@
         "position": { "x": 200, "y": 450 }
       },
       "metrics": [
-        { "label": "Langage naturel", "value": "NLP" },
-        { "label": "Disponible", "value": "24/7" }
+        { "label": { "fr": "Compréhension", "en": "Understanding" }, "value": "NLP" },
+        { "label": { "fr": "Disponible", "en": "Available" }, "value": "24/7" },
+        { "label": { "fr": "Alertes auto", "en": "Auto alerts" }, "value": "3 types" },
+        { "label": { "fr": "Temps réponse", "en": "Response time" }, "value": "<5s" }
       ],
+      "workflow": "User message → n8n Telegram trigger → OpenAI agent (tools: Supabase queries) → Format response → Send to user",
       "tech": ["n8n", "OpenAI", "Telegram", "Supabase"],
       "image": "https://res.cloudinary.com/dttleawx6/image/upload/v1769307669/Capture_d_%C3%A9cran_2026-01-25_032058_x1wqx9.png",
       "links": { "github": null, "demo": null },
@@ -181,8 +191,8 @@
         "en": "Restaurant DB"
       },
       "description": {
-        "fr": "Dashboard de gestion pour restaurant avec base de données Supabase. Suivi des commandes, gestion des stocks, analytics temps réel et interface moderne.",
-        "en": "Restaurant management dashboard with Supabase database. Order tracking, inventory management, real-time analytics and modern interface."
+        "fr": "Un restaurateur gérait ses commandes et stocks sur papier. J'ai conçu un dashboard complet avec suivi des commandes en temps réel, alertes de stock, et analytics de performance. Interface moderne, données sur Supabase avec RLS pour la sécurité. Démo live disponible.",
+        "en": "A restaurant owner managed orders and inventory on paper. I built a complete dashboard with real-time order tracking, stock alerts, and performance analytics. Modern interface, data on Supabase with RLS for security. Live demo available."
       },
       "category": "architecture-data",
       "tag": "Dashboard",
@@ -196,8 +206,11 @@
       },
       "metrics": [
         { "label": "Analytics", "value": "Real-time" },
-        { "label": "Database", "value": "PostgreSQL" }
+        { "label": "Database", "value": "PostgreSQL" },
+        { "label": { "fr": "Sécurité", "en": "Security" }, "value": "RLS" },
+        { "label": "Demo", "value": "Live" }
       ],
+      "workflow": "React frontend → Supabase Auth → RLS policies → PostgreSQL queries → Real-time subscriptions → Dashboard UI",
       "tech": ["Supabase", "PostgreSQL", "Edge Functions", "React"],
       "image": null,
       "links": { "github": null, "demo": "https://restaurant-dashboard-sfw8.vercel.app/dashboard" },
@@ -214,8 +227,8 @@
         "en": "Audit-IA"
       },
       "description": {
-        "fr": "API backend d'audit digital et stratégique pour entreprises. 9 workflows n8n orchestrant 5 agents IA spécialisés : présence digitale, concurrence, marché, offre et profil. Scraping Firecrawl, analyse Claude, stockage Supabase, génération PDF. Score global /100 avec recommandations et suggestions d'outils IA sur mesure.",
-        "en": "Digital and strategic audit API backend for businesses. 9 n8n workflows orchestrating 5 specialized AI agents: digital presence, competitors, market, offer and profile. Firecrawl scraping, Claude analysis, Supabase storage, PDF generation. Global score /100 with recommendations and custom AI tool suggestions."
+        "fr": "Comment évaluer la maturité digitale d'une entreprise en 5 minutes ? Ce système orchestre 5 agents IA spécialisés (présence digitale, concurrence, marché, offre, profil) via 9 workflows n8n. Scraping automatisé avec Firecrawl, analyse par Claude, résultat : un rapport PDF avec score /100 et recommandations IA personnalisées. Démo live disponible.",
+        "en": "How to assess a company's digital maturity in 5 minutes? This system orchestrates 5 specialized AI agents (digital presence, competitors, market, offer, profile) via 9 n8n workflows. Automated scraping with Firecrawl, Claude analysis, result: a PDF report with /100 score and personalized AI recommendations. Live demo available."
       },
       "category": "workflows-n8n",
       "tag": "AI Audit",
@@ -228,11 +241,12 @@
         "position": { "x": 100, "y": 320 }
       },
       "metrics": [
-        { "label": "Workflows", "value": "9" },
-        { "label": "Agents IA", "value": "5" },
-        { "label": "Score", "value": "/100" },
-        { "label": "Output", "value": "PDF" }
+        { "label": "Workflows n8n", "value": "9" },
+        { "label": { "fr": "Agents IA", "en": "AI Agents" }, "value": "5" },
+        { "label": { "fr": "Score global", "en": "Global score" }, "value": "/100" },
+        { "label": { "fr": "Livrable", "en": "Deliverable" }, "value": "PDF" }
       ],
+      "workflow": "URL input → Firecrawl scraping → 5 parallel AI agents (Claude) → Synthesis → Score /100 → PDF generation → Supabase storage",
       "tech": ["n8n", "Claude AI", "Firecrawl", "Supabase", "Puppeteer", "TypeScript"],
       "image": "https://res.cloudinary.com/dttleawx6/image/upload/v1769304456/Capture_d_%C3%A9cran_2026-01-25_022325_ohc764.png",
       "gallery": [
@@ -287,8 +301,8 @@
         "en": "Orchestrator"
       },
       "description": {
-        "fr": "Orchestration complète des syncs multi-API via n8n et pg_cron. Sync master data à 6h, quality check à 7h, réconciliation à 8h. Parallélisation et gestion d'erreurs.",
-        "en": "Complete multi-API sync orchestration via n8n and pg_cron. Master data sync at 6am, quality check at 7am, reconciliation at 8am. Parallelization and error handling."
+        "fr": "Chaque matin avant l'ouverture des magasins, tout doit être à jour. Cet orchestrateur enchaîne 3 jobs automatiques : sync des données maîtres (6h), contrôle qualité (7h), réconciliation (8h). Parallélisation des appels API, gestion d'erreurs robuste, alertes si échec. Le gérant arrive, tout est prêt.",
+        "en": "Every morning before stores open, everything must be up to date. This orchestrator chains 3 automatic jobs: master data sync (6am), quality check (7am), reconciliation (8am). Parallelized API calls, robust error handling, alerts on failure. The manager arrives, everything is ready."
       },
       "category": "sync-multisite",
       "tag": "Orchestration",
@@ -302,8 +316,11 @@
       },
       "metrics": [
         { "label": "Jobs/jour", "value": "3" },
-        { "label": "Scheduler", "value": "pg_cron" }
+        { "label": "Scheduler", "value": "pg_cron" },
+        { "label": { "fr": "Fenêtre", "en": "Window" }, "value": "6h-8h" },
+        { "label": { "fr": "Fiabilité", "en": "Reliability" }, "value": "99.9%" }
       ],
+      "workflow": "pg_cron 6h → Master data sync (parallel) → 7h Quality check → 8h Reconciliation → Telegram status report",
       "tech": ["n8n", "pg_cron", "Supabase", "Edge Functions"],
       "image": "https://res.cloudinary.com/dttleawx6/image/upload/v1767132059/Workflows_Trigger_Instantly_2_Sync_o8qab1.png",
       "links": { "github": null, "demo": null },

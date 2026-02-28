@@ -136,7 +136,8 @@
   /* ============================================
      TYPOGRAPHY
      ============================================ */
-  --n8n-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --n8n-font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --n8n-font-family-heading: 'Bricolage Grotesque', 'DM Sans', -apple-system, sans-serif;
   --n8n-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
   
   --n8n-font-size-xs: 0.75rem;    /* 12px */
@@ -251,4 +252,30 @@
   --n8n-color-foreground-base: hsl(220, 17%, 25%);
   --n8n-color-foreground-light: hsl(220, 17%, 35%);
   --n8n-color-foreground-xlight: hsl(220, 17%, 45%);
+}
+
+/* ============================================
+   EXTENDED DESIGN TOKENS
+   ============================================ */
+
+:root {
+  /* Skill category accent colors (aliases to node colors) */
+  --n8n-skill-automation: var(--n8n-color-primary);       /* #FF6D5A */
+  --n8n-skill-data:       var(--n8n-node-data);           /* #3498DB */
+  --n8n-skill-ai:         var(--n8n-node-ai);             /* #9B59B6 */
+  --n8n-skill-scraping:   var(--n8n-node-transform);      /* #27AE60 */
+  --n8n-skill-tools:      var(--n8n-node-logic);          /* #F39C12 */
+
+  /* Glow utilities */
+  --n8n-glow-primary:    0 0 20px rgba(255, 109, 90, 0.30);
+  --n8n-glow-primary-sm: 0 0 10px rgba(255, 109, 90, 0.20);
+  --n8n-glow-primary-lg: 0 0 40px rgba(255, 109, 90, 0.25);
+
+  /* Gradient meshes */
+  --n8n-gradient-mesh-orange: radial-gradient(ellipse at 20% 50%, rgba(255, 109, 90, 0.08) 0%, transparent 60%);
+  --n8n-gradient-mesh-purple: radial-gradient(ellipse at 80% 20%, rgba(155, 89, 182, 0.07) 0%, transparent 60%);
+  --n8n-gradient-mesh-blue:   radial-gradient(ellipse at 60% 80%, rgba(52, 152, 219, 0.06) 0%, transparent 60%);
+
+  /* Grain */
+  --n8n-grain-opacity: 0.03;
 }

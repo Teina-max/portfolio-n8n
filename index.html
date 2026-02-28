@@ -37,7 +37,7 @@
   <link rel="preconnect" href="https://res.cloudinary.com">
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/variables.css">
@@ -67,6 +67,16 @@
         <span class="theme-icon theme-icon--dark">🌙</span>
         <span class="theme-icon theme-icon--light">☀️</span>
       </button>
+
+      <!-- Nav CTAs -->
+      <a href="#projects" class="header-cta header-cta--secondary">
+        <span data-i18n="nav.projects">Projets</span>
+        <span>→</span>
+      </a>
+      <a href="#contact" class="header-cta header-cta--primary">
+        <span>📅</span>
+        <span data-i18n="contact.calendly">Prendre RDV</span>
+      </a>
     </div>
   </header>
 
@@ -107,6 +117,24 @@
        SECTION 1: HERO - Webhook Trigger
        ========================================== -->
   <section id="hero" class="section section--hero">
+
+    <!-- Hero Intro Overlay -->
+    <div class="hero-intro">
+      <p class="hero-eyebrow">⚡ n8n Builder · Toulouse, France</p>
+      <h1 class="hero-name">Teina <span class="hero-name-accent">Teinauri</span></h1>
+      <p class="hero-tagline-text" data-i18n="about.title">Builder Automatisation &amp; Data</p>
+      <div class="hero-cta-group">
+        <a href="#contact" class="btn-primary">
+          <span>📅</span>
+          <span data-i18n="contact.calendly">Prendre RDV</span>
+        </a>
+        <a href="#projects" class="btn-secondary">
+          <span data-i18n="nav.projects">Projets</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+
     <div class="hero-container">
       <!-- 3D Node Webhook -->
       <div class="node-3d node-webhook" data-depth="0.2">
@@ -216,15 +244,15 @@
         <div class="values-block">
           <h3 data-i18n="about.valuesTitle">Valeurs polynésiennes</h3>
           <div class="values-grid">
-            <div class="value-item">
+            <div class="value-item value-item--respect">
               <span class="value-icon">🤝</span>
               <span class="value-label" data-i18n="about.values.respect">Respect</span>
             </div>
-            <div class="value-item">
+            <div class="value-item value-item--humility">
               <span class="value-icon">🙏</span>
               <span class="value-label" data-i18n="about.values.humility">Humilité</span>
             </div>
-            <div class="value-item">
+            <div class="value-item value-item--sharing">
               <span class="value-icon">💝</span>
               <span class="value-label" data-i18n="about.values.sharing">Partage</span>
             </div>
@@ -244,73 +272,73 @@
 
       <div class="skills-grid">
         <!-- Automatisation -->
-        <div class="skill-card">
+        <div class="skill-card" data-skill-type="automation">
           <div class="skill-card-header">
             <span class="skill-icon">⚡</span>
             <h3 data-i18n="skills.automation.title">Automatisation</h3>
           </div>
-          <ul class="skill-list">
-            <li>n8n (workflows complexes)</li>
-            <li>Webhooks & API REST</li>
-            <li>Orchestration multi-services</li>
-            <li>Cron jobs & triggers</li>
-          </ul>
+          <div class="skill-chips">
+            <span class="skill-chip">n8n workflows complexes</span>
+            <span class="skill-chip">Webhooks &amp; API REST</span>
+            <span class="skill-chip">Orchestration multi-services</span>
+            <span class="skill-chip">Cron jobs &amp; triggers</span>
+          </div>
         </div>
 
         <!-- Architecture Data -->
-        <div class="skill-card">
+        <div class="skill-card" data-skill-type="data">
           <div class="skill-card-header">
             <span class="skill-icon">🗄️</span>
             <h3 data-i18n="skills.data.title">Architecture Data</h3>
           </div>
-          <ul class="skill-list">
-            <li>Supabase / PostgreSQL</li>
-            <li>Edge Functions (Deno)</li>
-            <li>RLS & sécurité</li>
-            <li>Modélisation relationnelle</li>
-          </ul>
+          <div class="skill-chips">
+            <span class="skill-chip">Supabase / PostgreSQL</span>
+            <span class="skill-chip">Edge Functions (Deno)</span>
+            <span class="skill-chip">RLS &amp; sécurité</span>
+            <span class="skill-chip">Modélisation relationnelle</span>
+          </div>
         </div>
 
         <!-- Intelligence Artificielle -->
-        <div class="skill-card">
+        <div class="skill-card" data-skill-type="ai">
           <div class="skill-card-header">
             <span class="skill-icon">🤖</span>
             <h3 data-i18n="skills.ai.title">Intelligence Artificielle</h3>
           </div>
-          <ul class="skill-list">
-            <li>OpenAI API / Claude</li>
-            <li>Agents IA conversationnels</li>
-            <li>Prompting avancé</li>
-            <li>RAG & embeddings</li>
-          </ul>
+          <div class="skill-chips">
+            <span class="skill-chip">OpenAI API / Claude</span>
+            <span class="skill-chip">Agents IA conversationnels</span>
+            <span class="skill-chip">Prompting avancé</span>
+            <span class="skill-chip">RAG &amp; embeddings</span>
+          </div>
         </div>
 
         <!-- Scraping & Parsing -->
-        <div class="skill-card">
+        <div class="skill-card" data-skill-type="scraping">
           <div class="skill-card-header">
             <span class="skill-icon">🔍</span>
-            <h3 data-i18n="skills.scraping.title">Scraping & Parsing</h3>
+            <h3 data-i18n="skills.scraping.title">Scraping &amp; Parsing</h3>
           </div>
-          <ul class="skill-list">
-            <li>Extraction de données web</li>
-            <li>Parsing HTML/JSON</li>
-            <li>Nettoyage & transformation</li>
-            <li>Automatisation de veille</li>
-          </ul>
+          <div class="skill-chips">
+            <span class="skill-chip">Extraction de données web</span>
+            <span class="skill-chip">Parsing HTML/JSON</span>
+            <span class="skill-chip">Nettoyage &amp; transformation</span>
+            <span class="skill-chip">Automatisation de veille</span>
+          </div>
         </div>
 
         <!-- Outils & Déploiement -->
-        <div class="skill-card">
+        <div class="skill-card" data-skill-type="tools">
           <div class="skill-card-header">
             <span class="skill-icon">🛠️</span>
-            <h3 data-i18n="skills.tools.title">Outils & Déploiement</h3>
+            <h3 data-i18n="skills.tools.title">Outils &amp; Déploiement</h3>
           </div>
-          <ul class="skill-list">
-            <li>Git & GitHub</li>
-            <li>TypeScript / JavaScript</li>
-            <li>Telegram Bot API</li>
-            <li>Cloudinary / APIs tierces</li>
-          </ul>
+          <div class="skill-chips">
+            <span class="skill-chip">Git &amp; GitHub</span>
+            <span class="skill-chip">TypeScript / JavaScript</span>
+            <span class="skill-chip">Telegram Bot API</span>
+            <span class="skill-chip">Cloudinary / APIs tierces</span>
+          </div>
         </div>
       </div>
 
@@ -346,6 +374,15 @@
         <svg class="canvas-connections" id="projectConnections">
           <!-- Connexions SVG générées dynamiquement -->
         </svg>
+      </div>
+
+      <!-- Node Type Legend -->
+      <div class="canvas-legend">
+        <span class="legend-title">Types :</span>
+        <span class="legend-item"><span class="legend-dot legend-dot--trigger"></span>Trigger</span>
+        <span class="legend-item"><span class="legend-dot legend-dot--data"></span>Data</span>
+        <span class="legend-item"><span class="legend-dot legend-dot--ai"></span>AI</span>
+        <span class="legend-item"><span class="legend-dot legend-dot--communication"></span>Communication</span>
       </div>
     </div>
   </section>
@@ -501,6 +538,9 @@
   <!-- ==========================================
        SCRIPTS
        ========================================== -->
+  <!-- Scroll-to-top -->
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Retour en haut">↑</button>
+
   <!-- Three.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
