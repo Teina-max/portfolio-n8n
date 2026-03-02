@@ -406,7 +406,7 @@ class N8NScene {
       {
         label: 'Code',
         logo: 'https://res.cloudinary.com/dttleawx6/image/upload/v1769287655/code_fd7vx3.svg',
-        color: 0x3498DB,
+        color: 0xF39C12,
         pos: [3, -1.5, -5]
       },
       {
@@ -424,7 +424,7 @@ class N8NScene {
       {
         label: 'Merge',
         logo: 'https://res.cloudinary.com/dttleawx6/image/upload/v1769287657/merge_umcsrt.svg',
-        color: 0xF39C12,
+        color: 0x4ECDC4,
         pos: [2, 0.5, -9]
       },
       {
@@ -438,68 +438,100 @@ class N8NScene {
     this.skillsGroup = new THREE.Group();
     this.skillsGroup.visible = false;
 
-    // Texture loader
     const textureLoader = new THREE.TextureLoader();
 
     skillsConfig.forEach((skill) => {
       const skillGroup = new THREE.Group();
 
-      // Create glow ring behind the logo (n8n grey style)
-      const ringGeometry = new THREE.RingGeometry(0.5, 0.7, 32);
-      const ringMaterial = new THREE.MeshBasicMaterial({
-        color: 0x333333,
+      // 1. Outer glow aura — large circle, additive blending, skill color
+      const glowGeo = new THREE.CircleGeometry(1.05, 48);
+      const glowMat = new THREE.MeshBasicMaterial({
+        color: skill.color,
+        transparent: true,
+        opacity: 0,
+        side: THREE.DoubleSide,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+      const glow = new THREE.Mesh(glowGeo, glowMat);
+      glow.position.z = -0.14;
+      skillGroup.add(glow);
+
+      // 2. Dark background disc for contrast
+      const bgGeo = new THREE.CircleGeometry(0.74, 48);
+      const bgMat = new THREE.MeshBasicMaterial({
+        color: 0x141414,
         transparent: true,
         opacity: 0,
         side: THREE.DoubleSide,
       });
-      const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-      ring.position.z = -0.05;
+      const bg = new THREE.Mesh(bgGeo, bgMat);
+      bg.position.z = -0.07;
+      skillGroup.add(bg);
+
+      // 3. Colored accent ring
+      const ringGeo = new THREE.RingGeometry(0.70, 0.82, 48);
+      const ringMat = new THREE.MeshBasicMaterial({
+        color: skill.color,
+        transparent: true,
+        opacity: 0,
+        side: THREE.DoubleSide,
+      });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.position.z = -0.04;
       skillGroup.add(ring);
 
-      // Create plane for the logo
-      const planeGeometry = new THREE.PlaneGeometry(1, 1);
-      const planeMaterial = new THREE.MeshBasicMaterial({
+      // 4. Icon plane
+      const planeGeo = new THREE.PlaneGeometry(1.0, 1.0);
+      const planeMat = new THREE.MeshBasicMaterial({
         transparent: true,
         opacity: 0,
         side: THREE.DoubleSide,
         depthWrite: false,
       });
-
-      // Load SVG texture
       textureLoader.load(skill.logo, (texture) => {
         texture.colorSpace = THREE.SRGBColorSpace;
-        planeMaterial.map = texture;
-        planeMaterial.needsUpdate = true;
+        planeMat.map = texture;
+        planeMat.needsUpdate = true;
       });
-
-      const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+      const plane = new THREE.Mesh(planeGeo, planeMat);
+      plane.position.z = 0.02;
       skillGroup.add(plane);
 
-      // Create label below
-      const labelTexture = this.createTextTexture(skill.label, {
+      // 5. Label below
+      const labelTex = this.createTextTexture(skill.label, {
         fontSize: 28,
-        color: '#ffffff',
+        color: '#aaaaaa',
         width: 200,
         height: 50,
-        align: 'center'
+        align: 'center',
       });
-      const labelGeometry = new THREE.PlaneGeometry(1.2, 0.3);
-      const labelMaterial = new THREE.MeshBasicMaterial({
-        map: labelTexture,
+      const labelGeo = new THREE.PlaneGeometry(1.4, 0.35);
+      const labelMat = new THREE.MeshBasicMaterial({
+        map: labelTex,
         transparent: true,
         opacity: 0,
         depthWrite: false,
       });
-      const label = new THREE.Mesh(labelGeometry, labelMaterial);
-      label.position.y = -0.75;
+      const label = new THREE.Mesh(labelGeo, labelMat);
+      label.position.y = -0.98;
       skillGroup.add(label);
 
       skillGroup.position.set(...skill.pos);
       skillGroup.userData = {
         basePos: [...skill.pos],
         phase: Math.random() * Math.PI * 2,
-        speed: 0.5 + Math.random() * 0.5,
-        materials: [ringMaterial, planeMaterial, labelMaterial],
+        speed: 0.4 + Math.random() * 0.4,
+        currentOpacity: 0,
+        glowMat,
+        // Each entry: { mat, max } where max is the target opacity at full visibility
+        materials: [
+          { mat: glowMat,   max: 0.22 },
+          { mat: bgMat,     max: 0.92 },
+          { mat: ringMat,   max: 0.85 },
+          { mat: planeMat,  max: 1.00 },
+          { mat: labelMat,  max: 0.72 },
+        ],
       };
 
       this.skillsGroup.add(skillGroup);
@@ -617,8 +649,9 @@ class N8NScene {
     this.skillsGroup.visible = true;
     const skillsOpacity = t;
     this.floatingSkills.forEach(skill => {
-      skill.userData.materials.forEach(mat => {
-        mat.opacity = skillsOpacity;
+      skill.userData.currentOpacity = skillsOpacity;
+      skill.userData.materials.forEach(({ mat, max }) => {
+        mat.opacity = skillsOpacity * max;
       });
     });
   }
@@ -636,8 +669,9 @@ class N8NScene {
 
     // Skills fully visible and floating
     this.floatingSkills.forEach(skill => {
-      skill.userData.materials.forEach(mat => {
-        mat.opacity = 1;
+      skill.userData.currentOpacity = 1;
+      skill.userData.materials.forEach(({ mat, max }) => {
+        mat.opacity = max;
       });
     });
   }
@@ -661,15 +695,21 @@ class N8NScene {
     // Animate floating skills
     if (this.skillsGroup.visible) {
       this.floatingSkills.forEach((skill, i) => {
-        const { basePos, phase, speed } = skill.userData;
+        const { basePos, phase, speed, currentOpacity, glowMat } = skill.userData;
 
         // Gentle floating motion
         skill.position.x = basePos[0] + Math.sin(time * speed + phase) * 0.3;
         skill.position.y = basePos[1] + Math.cos(time * speed * 0.7 + phase) * 0.2;
         skill.position.z = basePos[2] + Math.sin(time * speed * 0.5 + phase) * 0.15;
 
-        // Gentle rotation
-        skill.rotation.y = Math.sin(time * 0.5 + phase) * 0.2;
+        // Subtle Y-axis rotation (face-camera wobble)
+        skill.rotation.y = Math.sin(time * 0.3 + phase) * 0.12;
+
+        // Pulsing glow — independently animated on top of scroll opacity
+        if (glowMat && currentOpacity > 0) {
+          const pulse = 0.20 + Math.sin(time * 1.8 + phase) * 0.09;
+          glowMat.opacity = currentOpacity * pulse;
+        }
       });
     }
 
